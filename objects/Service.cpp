@@ -3,12 +3,12 @@
 
 std::ostream& operator << (ostream& out, const Service& service) {
  return out << "   Service:     " << service.name << "\n   "
-            << "Value:    $" << service.value << endl;
+            << "Cost:    $" << service.cost << endl;
 }
 
 Service::Service(){}
-Service::Service(int val, string name){
-  this->value = val;
+Service::Service(int cost, string name){
+  this->cost = cost;
   this->name = name;
 }
 Service::~Service(){}

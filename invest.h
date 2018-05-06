@@ -22,7 +22,7 @@ class Invest{
 
   public:
     static void invest();
-    //static string serviceName(int seed);
+    static string serviceName(int seed);
   };
 
 #endif

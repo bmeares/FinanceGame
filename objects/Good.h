@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include "Service.h"
 
 // #include "../includes.h"
 
@@ -13,6 +15,7 @@ class Good{
   protected:
     int value;
     string name;
+    vector<Service> services;
 
   public:
 

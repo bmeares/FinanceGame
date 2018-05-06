@@ -3,17 +3,23 @@
 
 #include <iostream>
 #include <string>
-#include "Good.h"
+//#include "Good.h"
 
 // #include "../includes.h"
 
 
 using namespace std;
 
-class Service : public Good{
+class Service{
   private:
+    string name;
+    int cost;
+    double gain;
 
   public:
+
+    void setName(string name){this->name = name;}
+    void setCost(int cost){this->cost = cost;}
 
     friend ostream& operator<<(ostream&, const Service&);
 
