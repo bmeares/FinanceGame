@@ -3,7 +3,7 @@
 # ******************************************************** #
 
 # Output Config
-TARGET :=test
+TARGET :=financeGame
 OBJDIR :=bin/
 
 # Compiler bin
