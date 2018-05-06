@@ -18,8 +18,6 @@ void Good::sell(int num){
   cout << "Would you like to sell " << name << " for $" << value <<
   "? (Y/N) ";
 
-  cout << "temp" << endl;
-
   Player::setChoice();
 
   if(Player::yesOrNo()){
