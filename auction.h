@@ -20,6 +20,7 @@ class Auction{
 
   public:
     static void auction();
+    static void printOptions();
     static string itemName(int seed);
   };
 

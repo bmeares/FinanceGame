@@ -7,28 +7,62 @@ Good Auction::phone, Auction::car, Auction::bike, Auction::game,
 vector<Good> Auction::GOODS = {phone, car, bike, game, food, clothing};
 
 void Auction::auction(){
-  Canvas::clearScreen();
-  Canvas::stats();
+  bool runagain = true;
+  int choice = -1;
 
+  while(runagain){
+
+    runagain = false;
+    Canvas::clearScreen();
+    Canvas::stats();
+    cout << "\n   AUCTION:\n\n";
+
+    if(Player::getInventory().size() < 6){
+      printOptions();
+
+      cout << "  Choice: ";
+      cin >> choice;
+      cout << "\n";
+
+      if(choice != 0){
+        if(!(choice > 0 && choice < 7)){
+          cout << "Error: please choose a valid item." << endl;
+          cout << "Press any key to choose return." << endl;
+          runagain = true;
+          // Not sure why, but I need two ignores for this to work
+          cin.ignore();
+          cin.ignore();
+        }
+        else{
+          GOODS.at(choice - 1).buy();
+        }
+      }
+    }
+    else {
+      cout << "   Your inventory is full.\n" << endl;
+      cout << "   Press any key to return." << endl;
+      cin.ignore();
+    }
+    cin.clear();
+
+  }
+}
+
+void Auction::printOptions(){
   srand(time(NULL));
   int randMax = 6;
   int seed;
 
   int maxPrice = Player::getBalance();
 
-  cout << "\n   AUCTION:\n\n";
-  cout << "   Choose an item from below to purchase.\n" << endl;
+  cout << "   Choose an item from below to purchase, or press n to return\n"
+    << endl;
   for(int i = 0; i < 6; i++){
     seed = rand() % randMax;
     GOODS.at(i).setValue(rand() % maxPrice);
     GOODS.at(i).setName(itemName(seed));
     cout << " " << i + 1 << ".\n" << GOODS.at(i) << endl;
   }
-  int choice;
-  cout << "  Choice: ";
-  cin >> choice;
-  cout << "\n";
-  GOODS.at(choice - 1).buy();
 }
 
 string Auction::itemName(int num){

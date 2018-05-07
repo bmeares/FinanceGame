@@ -10,37 +10,43 @@ vector<Service> Invest::SERVICES = {service1, service2, service2, service3,
 void Invest::invest(){
   Canvas::clearScreen();
   Canvas::stats();
-
-  srand(time(NULL));
-
-  int maxPrice = Player::getBalance();
-  vector<string> NAMES =  {"Repair", "Refurbish", "Restore",
-                          "Refine", "Upgrade"};
-  double effect;
-
   cout << "\n   INVESTMENTS:\n\n";
-  cout << "   Choose an investment from below to purchase.\n" << endl;
 
-  for(int i = 0; i < 5; i++){
-    effect = (static_cast<double>(i + 1) * 0.1) + 0.8;
-    SERVICES.at(i).setCost(rand() % maxPrice);
-    SERVICES.at(i).setName(NAMES.at(i));
-    SERVICES.at(i).setEffect(effect);
-    cout << " " << i + 1 << ".\n" << SERVICES.at(i) << endl;
+  if(Player::hasInventory()){
+    srand(time(NULL));
+
+    int maxPrice = Player::getBalance();
+    vector<string> NAMES =  {"Repair", "Refurbish", "Restore",
+                            "Refine", "Upgrade"};
+    double effect;
+
+    cout << "   Choose an investment from below to purchase.\n" << endl;
+
+    for(int i = 0; i < 5; i++){
+      effect = (static_cast<double>(i + 1) * 0.1) + 0.8;
+      SERVICES.at(i).setCost(rand() % maxPrice);
+      SERVICES.at(i).setName(NAMES.at(i));
+      SERVICES.at(i).setEffect(effect);
+      cout << " " << i + 1 << ".\n" << SERVICES.at(i) << endl;
+    }
+
+
+    int choice;
+    cout << "  Choice: ";
+    cin >> choice;
+    cout << "\n";
+    Service srv = SERVICES.at(choice - 1);
+
+    srv.buy();
+    if(Player::yesOrNo())
+      applyService(srv);
   }
-
-
-  int choice;
-  cout << "  Choice: ";
-  cin >> choice;
-  cout << "\n";
-  Service srv = SERVICES.at(choice - 1);
-
-  srv.buy();
-  if(Player::yesOrNo())
-    applyService(srv);
+  else{
+    cout << "   You need an inventory to buy investments.\n\n" << endl;
+    cout << "   Press any key to return." << endl;
+    cin.ignore();
+  }
 }
-
 void Invest::applyService(Service& srv){
   Canvas::clearScreen();
   Canvas::stats();

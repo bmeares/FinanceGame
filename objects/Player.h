@@ -26,6 +26,7 @@ class Player{
     static vector<Good>& getInventory();
 
     static bool yesOrNo();
+    static bool hasInventory();
 
     static void addGood(Good&);
     static void removeGood(int);

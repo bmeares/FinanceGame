@@ -19,6 +19,15 @@ bool Player::yesOrNo(){
   }
 }
 
+bool Player::hasInventory(){
+  bool hasInventory;
+   if(inventory.size() > 0)
+     hasInventory = true;
+  else
+    hasInventory = false;
+  return hasInventory;
+}
+
 void Player::addGood(Good& good){
   inventory.push_back(good);
 }
