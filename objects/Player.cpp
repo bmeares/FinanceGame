@@ -13,8 +13,10 @@ bool Player::yesOrNo(){
   if(choice == "y" || choice == "Yes" || choice == "yes" || choice == "Y"
   || choice == "YES" || choice == "1" || choice == "YASS")
     return true;
-  else
+  else{
+    choice = "";
     return false;
+  }
 }
 
 void Player::addGood(Good& good){

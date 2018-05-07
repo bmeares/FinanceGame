@@ -29,7 +29,7 @@ bool Canvas::info(){
   if(Player::getChoice() == "n" || Player::getChoice() == "N"){
     Invest::invest();
   }
-  if(Player::getChoice() == "q" || Player::getChoice() == "q"){
+  if(Player::getChoice() == "q" || Player::getChoice() == "Q"){
     running = false;
   }
   return running;
