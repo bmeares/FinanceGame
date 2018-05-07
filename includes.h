@@ -12,6 +12,7 @@
 #include "Canvas/Menu.h"
 #include "auction.h"
 #include "sell.h"
+#include "improve.h"
 #include "invest.h"
 
 #endif

@@ -1,6 +1,6 @@
 #include "Player.h"
 
-int Player::balance = 100;
+unsigned long long Player::balance = 100;
 string Player::choice = "";
 vector<Good> Player::inventory = {};
 vector<Service> Player::services = {};

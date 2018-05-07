@@ -13,14 +13,14 @@ void Sell::sell(){
     cout << "   Choose an item from below to sell, or press n to return.\n"
     << endl;
 
-    Canvas::showInventory();
-    int choice = 0;
-    cout << "  Choice: ";
-    cin >> choice;
-    if(choice == 0)
-      cout << "choice == 0" << endl;
-    cout << "TEST: choice: " << choice << endl;
-    cout << "\n";
+    // Canvas::showInventory();
+    // int choice = 0;
+    // cout << "  Choice: ";
+    // cin >> choice;
+    // cout << "\n";
+
+    int choice = Canvas::inventoryChoice();
+
     if(choice != 0)
       Player::getInventory().at(choice - 1).sell(choice - 1);
     cin.clear();

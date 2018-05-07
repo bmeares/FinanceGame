@@ -10,7 +10,8 @@ bool Canvas::info(){
   clearScreen();
   stats();
   cout << "\n\n\nInventory (i)   |   ";
-  cout << "Auction (a)   |   Sell (s)   |   Invest (n)   |   Quit (q)" << endl;
+  cout << "Auction (a)   |   Sell (s)   |   Improve (m)   |   Invest (n)"
+  << "   |   Quit (q)" << endl;
 
   bool running = true;
   Player::setChoice();
@@ -26,6 +27,9 @@ bool Canvas::info(){
   if(Player::getChoice() == "s" || Player::getChoice() == "S"){
     Sell::sell();
   }
+  if(Player::getChoice() == "m" || Player::getChoice() == "M"){
+    Improve::improve();
+  }
   if(Player::getChoice() == "n" || Player::getChoice() == "N"){
     Invest::invest();
   }
@@ -34,6 +38,70 @@ bool Canvas::info(){
   }
   return running;
 }
+
+int Canvas::inventoryChoice(){
+  showInventory();
+  int choice = 0;
+  cout << "  Choice: ";
+  cin >> choice;
+  cout << "\n";
+
+  if(static_cast<uint>(choice) > Player::getInventory().size()){
+    bool runagain = false;
+    do{
+      cout << "Pick an item onscreen." << endl;
+      cin >> choice;
+      if(static_cast<uint>(choice) > Player::getInventory().size())
+        runagain = true;
+      else {
+        runagain = false;
+      }
+      while(cin.fail()) {
+        cout << "Pick an item onscreen" << endl;
+        cin.clear();
+        cin.ignore(256,'\n');
+        cin >> choice;
+      }
+    } while(runagain);
+    // choice = 0;
+  }
+
+  return choice;
+}
+
+int Canvas::serviceChoice(){
+  int choice = 0;
+  cout << "  Choice: ";
+  cin >> choice;
+  cout << "\n";
+
+  if(choice > 5){
+    bool runagain = false;
+    do{
+      cout << "Pick an item onscreen." << endl;
+      cin >> choice;
+      if(choice > 5)
+        runagain = true;
+      else // if passes everything, just return choice
+        runagain = false;
+      while(cin.fail()){ // if cin sees a char, set choice to 0
+        cout << "test" << endl;
+        cin.clear();
+        cin.ignore();
+        cin.ignore();
+        cin.ignore();
+
+        runagain = false;
+        choice = 0;
+      }
+
+    } while(runagain);
+    //choice = 0;
+  }
+
+  return choice;
+}
+
 
 void Canvas::showInventory(){
   cout << "\n INVENTORY: \n" << endl;

@@ -27,7 +27,7 @@ void Auction::auction(){
       if(choice != 0){
         if(!(choice > 0 && choice < 7)){
           cout << "Error: please choose a valid item." << endl;
-          cout << "Press any key to choose return." << endl;
+          cout << "Press any key to run again." << endl;
           runagain = true;
           // Not sure why, but I need two ignores for this to work
           cin.ignore();

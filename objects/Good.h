@@ -13,7 +13,7 @@ using namespace std;
 
 class Good{
   protected:
-    int value;
+    unsigned long long value;
     string name;
     Service service;
 
@@ -25,7 +25,7 @@ class Good{
 
     friend ostream& operator<<(ostream&, Good&);
 
-    void setValue(int val){value = val;}
+    void setValue(unsigned long long val){value = val;}
     int getValue(){return value;}
     void setName(string name){this->name = name;}
     string getName(){return name;}

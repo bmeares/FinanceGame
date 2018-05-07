@@ -27,7 +27,7 @@ void Good::sell(int num){
 }
 
 void Good::improve(double e){
-  value *= e;
+  value = ((value * e));
 }
 
 std::ostream& operator << (ostream& out, Good& good) {

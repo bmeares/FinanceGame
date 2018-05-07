@@ -1,5 +1,5 @@
-#ifndef INVEST_H
-#define INVEST_H 1
+#ifndef IMPROVE_H
+#define IMPROVE_H 1
 
 #include "auction.h"
 #include <iostream>
@@ -14,17 +14,16 @@
 
 using namespace std;
 
-class Invest{
+class Improve{
   private:
-    static int amount;
-    static double rate;
-    static double effect;
+    static Service service1, service2, service3, service4,
+    service5, service6;
+    static vector<Service> SERVICES;
 
   public:
-    static void invest();
-    static void apply();
-
-
+    static void improve();
+    static string serviceName(int seed);
+    static void applyService(Service&);
   };
 
 #endif

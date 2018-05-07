@@ -21,6 +21,8 @@ class Canvas{
     bool info();
 
     static void showInventory();
+    static int inventoryChoice();
+    static int serviceChoice();
     static void stats();
 
     Canvas();

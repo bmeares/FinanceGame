@@ -12,7 +12,7 @@ using namespace std;
 
 class Player{
   private:
-    static int balance;
+    static unsigned long long balance;
     static string choice;
     static vector<Good> inventory;
     static vector<Service> services;
@@ -20,13 +20,15 @@ class Player{
   public:
 
     static int getBalance();
-    static void setBalance(int num){balance = num;}
+    static void setBalance(unsigned long long num){balance = num;}
     static string getChoice();
     static void setChoice();
     static vector<Good>& getInventory();
 
     static bool yesOrNo();
     static bool hasInventory();
+    static void addBalance(unsigned long long bal){balance += bal;}
+    static void subtractBalance(unsigned long long bal){balance -= bal;}
 
     static void addGood(Good&);
     static void removeGood(int);

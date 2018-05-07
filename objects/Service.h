@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+
 //#include "Good.h"
 
 // #include "../includes.h"
@@ -12,7 +14,7 @@ using namespace std;
 
 class Service{
   private:
-    int cost;
+    unsigned long long cost;
     string name;
     double effect;
 
@@ -21,7 +23,7 @@ class Service{
     void buy();
 
     void setName(string name){this->name = name;}
-    void setCost(int cost){this->cost = cost;}
+    void setCost(unsigned long long cost){this->cost = cost;}
     string getName(){return name;}
     void setEffect(double e){this->effect = e;}
     double getEffect(){return effect;}
