@@ -21,6 +21,7 @@ class Good{
 
     void buy();
     void sell(int);
+    void improve(double e);
 
     friend ostream& operator<<(ostream&, Good&);
 

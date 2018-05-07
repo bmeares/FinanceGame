@@ -17,8 +17,9 @@ void Service::buy(){
 
 
 std::ostream& operator << (ostream& out, const Service& service) {
- return out << "   Service:     " << service.name << "\n"
-            << "   Cost:        $" << service.cost << endl;
+ return out << "   Service:       " << service.name << "\n"
+            << "   Cost:          $" << service.cost << "\n"
+            << "   Improvement:   " << service.effect * 10 << "%" << endl;
 }
 
 Service& Service::operator = (const Service& rhs){

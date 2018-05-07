@@ -23,6 +23,8 @@ class Service{
     void setName(string name){this->name = name;}
     void setCost(int cost){this->cost = cost;}
     string getName(){return name;}
+    void setEffect(double e){this->effect = e;}
+    double getEffect(){return effect;}
 
     friend ostream& operator<<(ostream&, const Service&);
     Service& operator=(const Service& rhs);

@@ -12,19 +12,24 @@ void Invest::invest(){
   Canvas::stats();
 
   srand(time(NULL));
-  int randMax = 6;
-  int seed;
 
   int maxPrice = Player::getBalance();
+  vector<string> NAMES =  {"Repair", "Refurbish", "Restore",
+                          "Refine", "Upgrade"};
+  double effect;
 
   cout << "\n   INVESTMENTS:\n\n";
   cout << "   Choose an investment from below to purchase.\n" << endl;
-  for(int i = 0; i < 6; i++){
-    seed = rand() % randMax;
+
+  for(int i = 0; i < 5; i++){
+    effect = (static_cast<double>(i + 1) * 0.1) + 0.8;
     SERVICES.at(i).setCost(rand() % maxPrice);
-    SERVICES.at(i).setName(serviceName(seed));
+    SERVICES.at(i).setName(NAMES.at(i));
+    SERVICES.at(i).setEffect(effect);
     cout << " " << i + 1 << ".\n" << SERVICES.at(i) << endl;
   }
+
+
   int choice;
   cout << "  Choice: ";
   cin >> choice;
@@ -51,35 +56,33 @@ void Invest::applyService(Service& srv){
   cout << "\n";
 
   Player::getInventory().at(choice - 1).setService(srv);
+  Player::getInventory().at(choice - 1).improve(srv.getEffect());
+
+
+
 
 //  cin.ignore();
 }
 
-string Invest::serviceName(int num){
-  string first, second, last;
-  int randMax = 19;
-  vector<string> firsts, seconds, lasts;
-  stringstream fullName;
-
-
-    firsts =  {"LG", "Apple", "Google", "Samsung", "Sony", "Nokia", "Motorola",
-              "2018", "2009", "1996", "1965", "1999", "2015", "2001",
-              "Speedy", "Lightning", "Super Duper", "Ultra", "Mega",
-              "All-natural"};
-    seconds = {"G5", "iPhone", "Pixel", "Galaxy", "Xperia", "3310", "Droid",
-              "BMW", "Ford", "Toyota", "Chevrolet", "GMC", "Tesla", "Nissan",
-              "Turbo", "Nintendo", "Lightsaber", "Time machine", "Toothpaste",
-              "Hershey's"};
-    lasts =   {"Pro", "Compact", "S9", "XL", "C", "X", "mini",
-              "X5", "F150", "Tacoma", "C10", "Sonoma", "Model S", "Altima",
-              "For Elders", "For Women", "For Men", "For Children",
-              "Uncensored Edition", "Xtreme Editiion"};
-
-
-  first = firsts.at(rand() % randMax);
-  second = seconds.at(rand() % randMax);
-  last = lasts.at(rand() % randMax);
-
-   fullName << first << " " << second << " " << last;
-   return fullName.str();
-}
+// string Invest::serviceName(int num){
+//   string name;
+//   int randMax = 5;
+//   vector<string> NAMES;
+//   double effect;
+//
+//   int vectorPosition = rand() % randMax;
+//
+//     // enum NAMES_VALS {Fixing = 1, Repairing, Cleaning, Washing, Painting, Restoring,
+//     //                 Refurbishing, Refining, Upgrading
+//     //                 };
+//
+//     NAMES =  {"Repair", "Refurbish", "Restore", "Refine", "Upgrading"
+//               };
+//     effect = static_cast<double>(vectorPosition + 1) * 0.1;
+//     cout << "serviceName effect: " << effect << endl;
+//
+//
+//   name = NAMES.at(vectorPosition);
+//
+//   return name;
+// }

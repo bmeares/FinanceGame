@@ -26,6 +26,10 @@ void Good::sell(int num){
   }
 }
 
+void Good::improve(double e){
+  value *= e;
+}
+
 std::ostream& operator << (ostream& out, Good& good) {
   out << "   Item:     " << good.name << "\n"
       << "   Value:    $" << good.value << "\n";
