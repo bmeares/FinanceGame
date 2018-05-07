@@ -3,14 +3,14 @@
 using namespace std;
 
 unsigned long long Invest::amount = 0;
-double Invest::rate = 0.01;
+double Invest::rate = 0.00001;
 double Invest::effect = 0.0;
 
 void Invest::invest(){
   Canvas::clearScreen();
   Canvas::stats();
   cout << "\n   INVEST:\n\n";
-  cout << "   Rate: 1% per $\n" << endl;
+  cout << "   Rate: 0.001% per $\n" << endl;
 
   if(Player::hasInventory()){
 
@@ -44,7 +44,7 @@ void Invest::apply(){
 
   int choice = Canvas::inventoryChoice();
 
-  effect = static_cast<double>(amount) * rate;
+  effect = (amount) * rate;
   int val = Player::getInventory().at(choice - 1).getValue();
 
   val = (val * effect) + val;

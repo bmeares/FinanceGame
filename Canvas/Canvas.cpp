@@ -36,6 +36,13 @@ bool Canvas::info(){
   if(Player::getChoice() == "q" || Player::getChoice() == "Q"){
     running = false;
   }
+  if(lost()){
+    clearScreen();
+    cout << "\n You're out of money and have no assets!\n\n";
+    cout << " Thanks for playing! Press any key to quit." << endl;
+    cin.ignore();
+    running = false;
+  }
   return running;
 }
 
@@ -136,6 +143,13 @@ unsigned long long Canvas::randomLL(unsigned long long min, unsigned long long m
       first = false;
    }
    return min + rand() % (( max + 1 ) - min);
+}
+
+bool Canvas::lost(){
+  bool lost;
+  if(Player::getBalance() == 0 && Player::getInventory().size() == 0)
+    lost = true;
+  return lost;
 }
 
 Canvas::Canvas(){}

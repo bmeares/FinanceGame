@@ -12,7 +12,7 @@ void Improve::improve(){
   Canvas::stats();
   cout << "\n   IMPROVEMENTS:\n\n";
 
-  if(Player::hasInventory()){
+  if(Player::hasInventory() && Player::getBalance() > 0){
     srand(time(NULL));
 
     int maxPrice = Player::getBalance();
@@ -24,7 +24,7 @@ void Improve::improve(){
 
     for(int i = 0; i < 5; i++){
       effect = ((static_cast<double>(i + 0.5) * 0.1) / 1.3) + 1;
-      SERVICES.at(i).setCost(rand() % maxPrice);
+      SERVICES.at(i).setCost(Canvas::randomLL(1, maxPrice));
       SERVICES.at(i).setName(NAMES.at(i));
       SERVICES.at(i).setEffect(effect);
       cout << " " << i + 1 << ".\n" << SERVICES.at(i) << endl;
@@ -44,7 +44,7 @@ void Improve::improve(){
       applyService(srv);
   }
   else{
-    cout << "   You need an inventory to buy improvements.\n\n" << endl;
+    cout << "   You need an inventory and money to buy improvements.\n\n" << endl;
     cout << "   Press any key to return." << endl;
     cin.ignore();
   }

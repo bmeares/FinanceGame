@@ -27,6 +27,7 @@ class Canvas{
     static void stats();
     static string FormatWithCommas(unsigned long long);
     static unsigned long long randomLL(unsigned long long, unsigned long long);
+    static bool lost();
 
     Canvas();
     ~Canvas();
