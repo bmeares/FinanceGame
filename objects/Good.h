@@ -26,7 +26,7 @@ class Good{
     friend ostream& operator<<(ostream&, Good&);
 
     void setValue(unsigned long long val){value = val;}
-    int getValue(){return value;}
+    unsigned long long getValue(){return value;}
     void setName(string name){this->name = name;}
     string getName(){return name;}
     void setService(Service srv){service = srv;}

@@ -19,7 +19,7 @@ class Player{
 
   public:
 
-    static int getBalance();
+    static unsigned long long getBalance(){return balance;}
     static void setBalance(unsigned long long num){balance = num;}
     static string getChoice();
     static void setChoice();
@@ -29,6 +29,9 @@ class Player{
     static bool hasInventory();
     static void addBalance(unsigned long long bal){balance += bal;}
     static void subtractBalance(unsigned long long bal){balance -= bal;}
+    static int numDigits();
+    static int firstThreeBalance();
+
 
     static void addGood(Good&);
     static void removeGood(int);

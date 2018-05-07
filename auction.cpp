@@ -53,16 +53,35 @@ void Auction::printOptions(){
   int randMax = 6;
   int seed;
 
-  int maxPrice = Player::getBalance();
+  //unsigned long long maxPrice = Player::getBalance();
 
   cout << "   Choose an item from below to purchase, or press n to return\n"
     << endl;
   for(int i = 0; i < 6; i++){
     seed = rand() % randMax;
-    GOODS.at(i).setValue(rand() % maxPrice);
+    //cout << "TEST: unround: " << (123456789) << endl;
+    //cout << "TEST: round: $" << Canvas::FormatWithCommas(roundPrice()) << endl;
+    GOODS.at(i).setValue(roundPrice());
     GOODS.at(i).setName(itemName(seed));
     cout << " " << i + 1 << ".\n" << GOODS.at(i) << endl;
   }
+}
+
+unsigned long long Auction::roundPrice(){
+  int numDigits = Player::numDigits();
+
+  unsigned long long balance = Player::getBalance();
+  unsigned long long randPrice = Canvas::randomLL(0, balance);
+  //int firstThreeBalance = Canvas::randomLL(1, 9);
+
+  if(numDigits > 3){
+    randPrice = Canvas::randomLL(1, Player::firstThreeBalance());
+    for(uint i = 0; i < Canvas::randomLL(1, numDigits - 3); i++){
+      randPrice *= 10;
+    }
+  }
+
+  return randPrice;
 }
 
 string Auction::itemName(int num){

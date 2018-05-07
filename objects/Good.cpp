@@ -1,5 +1,6 @@
 #include "Good.h"
 #include "Player.h"
+#include "../Canvas/Canvas.h"
 
 void Good::buy(){
 
@@ -30,9 +31,9 @@ void Good::improve(double e){
   value = ((value * e));
 }
 
-std::ostream& operator << (ostream& out, Good& good) {
+ostream& operator << (ostream& out, Good& good) {
   out << "   Item:     " << good.name << "\n"
-      << "   Value:    $" << good.value << "\n";
+      << "   Value:    $" << Canvas::FormatWithCommas(good.value) << "\n";
       if(good.service.getName() != "")
         out << "     (Investment: " << good.service.getName() << ")" << endl;
   return out;

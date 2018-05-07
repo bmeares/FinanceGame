@@ -116,8 +116,26 @@ void Canvas::showInventory(){
 }
 
 void Canvas::stats(){
-  cout << "\n Balance: $" << Player::getBalance() << endl;
+  cout << "\n Balance: $" << FormatWithCommas(Player::getBalance()) << endl;
   cout << " Items:   [" << Player::getInventory().size() << " / 6]" << endl;
+}
+
+string Canvas::FormatWithCommas(unsigned long long val){
+    stringstream ss;
+    ss.imbue(std::locale(""));
+    ss << fixed << val;
+    return ss.str();
+}
+
+unsigned long long Canvas::randomLL(unsigned long long min, unsigned long long max) //range : [min, max)
+{
+   static bool first = true;
+   if (first)
+   {
+      srand( time(NULL) ); //seeding for the first time only!
+      first = false;
+   }
+   return min + rand() % (( max + 1 ) - min);
 }
 
 Canvas::Canvas(){}

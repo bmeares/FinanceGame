@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int Invest::amount = 0;
+unsigned long long Invest::amount = 0;
 double Invest::rate = 0.01;
 double Invest::effect = 0.0;
 

@@ -16,7 +16,7 @@ using namespace std;
 
 class Invest{
   private:
-    static int amount;
+    static unsigned long long amount;
     static double rate;
     static double effect;
 

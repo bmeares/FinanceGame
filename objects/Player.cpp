@@ -28,6 +28,25 @@ bool Player::hasInventory(){
   return hasInventory;
 }
 
+int Player::numDigits(){
+  int numDigits = 0;
+  unsigned long long tempBalance = balance;
+  while(tempBalance > 0){
+    tempBalance /= 10;
+    numDigits++;
+  }
+  return numDigits;
+}
+
+int Player::firstThreeBalance(){
+  int num = numDigits();
+  unsigned long long tempBalance = balance;
+  for (int i = 0; i < num - 3; i++){
+    tempBalance /= 10;
+  }
+  return tempBalance;
+}
+
 void Player::addGood(Good& good){
   inventory.push_back(good);
 }
@@ -39,8 +58,6 @@ void Player::removeGood(int num){
 void Player::addService(Service& service){
   services.push_back(service);
 }
-
-int Player::getBalance(){return balance;}
 
 vector<Good>& Player::getInventory(){return inventory;}
 

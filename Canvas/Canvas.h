@@ -8,7 +8,8 @@
 // #include "../sell.h"
 // #include "../invest.h"
 #include "../includes.h"
-#include <iostream>
+#include <locale>
+#include <iomanip>
 #include <vector>
 
 using namespace std;
@@ -24,6 +25,8 @@ class Canvas{
     static int inventoryChoice();
     static int serviceChoice();
     static void stats();
+    static string FormatWithCommas(unsigned long long);
+    static unsigned long long randomLL(unsigned long long, unsigned long long);
 
     Canvas();
     ~Canvas();
