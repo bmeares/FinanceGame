@@ -29,7 +29,30 @@ void Invest::invest(){
   cout << "  Choice: ";
   cin >> choice;
   cout << "\n";
-  //SERVICES.at(choice - 1).buy();
+  Service srv = SERVICES.at(choice - 1);
+
+  srv.buy();
+  if(Player::yesOrNo())
+    applyService(srv);
+}
+
+void Invest::applyService(Service& srv){
+  Canvas::clearScreen();
+  Canvas::stats();
+
+  cout << "\n   INVESTMENTS:\n\n";
+  cout << "   Which item do you want to invest in?\n\n" << endl;
+
+  Canvas::showInventory();
+
+  int choice;
+  cout << "  Choice: ";
+  cin >> choice;
+  cout << "\n";
+
+  Player::getInventory().at(choice - 1).setService(srv);
+
+//  cin.ignore();
 }
 
 string Invest::serviceName(int num){

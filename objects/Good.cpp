@@ -26,9 +26,14 @@ void Good::sell(int num){
   }
 }
 
-std::ostream& operator << (ostream& out, const Good& good) {
- return out << "   Item:     " << good.name << "\n   "
-            << "Value:    $" << good.value << endl;
+std::ostream& operator << (ostream& out, Good& good) {
+  out << "   Item:     " << good.name << "\n"
+      << "   Value:    $" << good.value << "\n";
+      if(good.service.getName() != "")
+        out << "     (Investment: " << good.service.getName() << ")" << endl;
+  return out;
+ // return out << "   Item:     " << good.name << "\n"
+ //            << "   Value:    $" << good.value << "\n";
 }
 
 Good::Good(){}

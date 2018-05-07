@@ -3,6 +3,7 @@
 int Player::balance = 100;
 string Player::choice = "";
 vector<Good> Player::inventory = {};
+vector<Service> Player::services = {};
 
 Player::Player(){}
 Player::~Player(){}
@@ -24,10 +25,13 @@ void Player::removeGood(int num){
   inventory.erase(inventory.begin() + num);
 }
 
+void Player::addService(Service& service){
+  services.push_back(service);
+}
 
 int Player::getBalance(){return balance;}
 
-vector<Good> Player::getInventory(){return inventory;}
+vector<Good>& Player::getInventory(){return inventory;}
 
 
 string Player::getChoice(){return choice;}

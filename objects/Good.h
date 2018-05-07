@@ -15,19 +15,21 @@ class Good{
   protected:
     int value;
     string name;
-    vector<Service> services;
+    Service service;
 
   public:
 
-    virtual void buy();
-    virtual void sell(int);
+    void buy();
+    void sell(int);
 
-    friend ostream& operator<<(ostream&, const Good&);
+    friend ostream& operator<<(ostream&, Good&);
 
     void setValue(int val){value = val;}
     int getValue(){return value;}
     void setName(string name){this->name = name;}
     string getName(){return name;}
+    void setService(Service srv){service = srv;}
+    Service& getService(){return service;}
 
     Good();
     Good(int, string);
