@@ -1,7 +1,7 @@
 #include "Menu.h"
 
 bool Menu::startGame(){
-  double version = 1.0;
+  double version = 1.1;
   Canvas::clearScreen();
   cout << "\n Welcome to Finance Game! You're playing version "
     << fixed << setprecision(1) << version << ".";
@@ -12,27 +12,29 @@ bool Menu::startGame(){
 
 void Menu::printTable(){
 
-  cout << "\n Choose what you'd like to do from the options below.\n\n";
+  cout << "\n Choose what you'd like to do from the options below.\n\n ";
 
   for(int i = 0; i < 55; i++){
     cout << "_";
   }
-  cout << "\n|" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
-  cout << "|" << centered("Inventory (i)", 17) << "|";
+  cout << "\n |" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
+  cout << " |" << centered("Inventory (i)", 17) << "|";
   cout << centered("Auction (a)", 17) << "|";
   cout << centered("Sell  (s)", 17) << "|";
-  cout << "\n|" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
+  cout << "\n |" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
 
+  cout << " ";
   for(int i = 0; i < 55; i++){
     cout << "\u2014";
   }
 
-  cout << "\n|" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
-  cout << "|" << centered("Improve (m)", 17) << "|";
+  cout << "\n |" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
+  cout << " |" << centered("Improve (m)", 17) << "|";
   cout << centered("Invest  (n)", 17) << "|";
   cout << centered("Quit  (q)", 17) << "|";
-  cout << "\n|" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
+  cout << "\n |" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
 
+  cout << " ";
   for(int i = 0; i < 55; i++){
     cout << "\u0305";
   }
