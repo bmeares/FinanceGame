@@ -3,14 +3,14 @@
 using namespace std;
 
 unsigned long long Invest::amount = 0;
-double Invest::rate = 0.00001;
+double Invest::rate = 0.00005;
 double Invest::effect = 0.0;
 
 void Invest::invest(){
   Canvas::clearScreen();
   Canvas::stats();
   cout << "\n   INVEST:\n\n";
-  cout << "   Rate: 0.001% per $\n" << endl;
+  cout << "   Rate: 0.005% per $\n" << endl;
 
   if(Player::hasInventory()){
 

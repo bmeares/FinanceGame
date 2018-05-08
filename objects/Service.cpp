@@ -1,5 +1,6 @@
 #include "Service.h"
 #include "Player.h"
+#include "../Canvas/Canvas.h"
 
 void Service::buy(){
 
@@ -19,7 +20,8 @@ void Service::buy(){
 std::ostream& operator << (ostream& out, const Service& service) {
  return out << "   Service:" << setw(15) << service.name << "\n"
             << "   Cost:" << setw(16) << "$" << service.cost << "\n"
-            << "   Improvement:" << setw(10) << setprecision(2) << (service.effect * 100) - 100 << "%" << endl;
+            << "   Improvement:" << setw(10) << setprecision(2)
+            << Canvas::FormatWithCommas((service.effect * 100) - 100) << "%" << endl;
 }
 
 Service& Service::operator = (const Service& rhs){
