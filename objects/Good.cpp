@@ -16,8 +16,8 @@ void Good::buy(){
 }
 
 void Good::sell(int num){
-  cout << "Would you like to sell " << name << " for $" << value <<
-  "? (Y/N) ";
+  cout << "Would you like to sell " << name << " for $"
+  << Canvas::FormatWithCommas(value) << "? (Y/N) ";
 
   Player::setChoice();
 
@@ -29,6 +29,13 @@ void Good::sell(int num){
 
 void Good::improve(double e){
   value = ((value * e));
+}
+
+bool Good::hasImprovement(int at){
+  bool hasImprovement = false;
+  if(Player::getInventory().at(at).getService().getName() != "")
+    hasImprovement = true;
+  return hasImprovement;
 }
 
 ostream& operator << (ostream& out, Good& good) {

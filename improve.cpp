@@ -20,10 +20,11 @@ void Improve::improve(){
                             "Refine", "Upgrade"};
     double effect;
 
-    cout << "   Choose an improvement from below to purchase.\n" << endl;
+    cout << "   Choose an improvement from below to purchase, "
+    << "or press n to return.\n" << endl;
 
     for(int i = 0; i < 5; i++){
-      effect = ((static_cast<double>(i + 0.5) * 0.1) / 1.3) + 1;
+      effect = ((static_cast<double>(i + 0.5) * 0.1) / 1.1) + 1;
       SERVICES.at(i).setCost(Canvas::randomLL(1, maxPrice));
       SERVICES.at(i).setName(NAMES.at(i));
       SERVICES.at(i).setEffect(effect);
@@ -58,14 +59,15 @@ void Improve::applyService(Service& srv){
 
   int choice = Canvas::inventoryChoice();
 
-  if (Player::getInventory().at(choice - 1).getService().getName() == ""){
-    Player::getInventory().at(choice - 1).setService(srv);
-    Player::getInventory().at(choice - 1).improve(srv.getEffect());
+  if(choice != 0){
+    if (!Good::hasImprovement(choice - 1)){
+      Player::getInventory().at(choice - 1).setService(srv);
+      Player::getInventory().at(choice - 1).improve(srv.getEffect());
+    }
+    else{
+      cout << "Cannot invest in an item that has already been improved." << endl;
+      cout << "Press any key to return." << endl;
+      cin.ignore();
+    }
   }
-  else{
-    cout << "Cannot improve an item more than once." << endl;
-    cout << "Press any key to return." << endl;
-    cin.ignore();
-  }
-
 }

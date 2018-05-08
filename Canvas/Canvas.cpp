@@ -9,9 +9,7 @@ void Canvas::clearScreen(){
 bool Canvas::info(){
   clearScreen();
   stats();
-  cout << "\n\n\nInventory (i)   |   ";
-  cout << "Auction (a)   |   Sell (s)   |   Improve (m)   |   Invest (n)"
-  << "   |   Quit (q)" << endl;
+  Menu::printTable();
 
   bool running = true;
   Player::setChoice();
@@ -20,6 +18,7 @@ bool Canvas::info(){
   }
   if(Player::getChoice() == "i" || Player::getChoice() == "I"){
     clearScreen();
+    stats();
     showInventory();
     cout << "\n\nPress any key to return." << endl;
     cin.ignore();
@@ -37,13 +36,16 @@ bool Canvas::info(){
     running = false;
   }
   if(lost()){
-    clearScreen();
-    cout << "\n You're out of money and have no assets!\n\n";
-    cout << " Thanks for playing! Press any key to quit." << endl;
-    cin.ignore();
+    lostMessage();
     running = false;
   }
   return running;
+}
+void Canvas::lostMessage(){
+  clearScreen();
+  cout << "\n You're out of money and have no assets!\n\n";
+  cout << " Thanks for playing! Press any key to quit." << endl;
+  cin.ignore();
 }
 
 int Canvas::inventoryChoice(){
@@ -51,26 +53,25 @@ int Canvas::inventoryChoice(){
   int choice = 0;
   cout << "  Choice: ";
   cin >> choice;
-  cout << "\n";
 
-  if(static_cast<uint>(choice) > Player::getInventory().size()){
+  if(quit())
+    return 0;
+
+  else if(static_cast<uint>(choice) > Player::getInventory().size()){
     bool runagain = false;
     do{
       cout << "Pick an item onscreen." << endl;
       cin >> choice;
+
       if(static_cast<uint>(choice) > Player::getInventory().size())
         runagain = true;
-      else {
+
+      else if(quit())
+        return 0;
+
+      else // if passes everything, just return choice
         runagain = false;
-      }
-      while(cin.fail()) {
-        cout << "Pick an item onscreen" << endl;
-        cin.clear();
-        cin.ignore(256,'\n');
-        cin >> choice;
-      }
     } while(runagain);
-    // choice = 0;
   }
 
   return choice;
@@ -80,32 +81,27 @@ int Canvas::serviceChoice(){
   int choice = 0;
   cout << "  Choice: ";
   cin >> choice;
-  cout << "\n";
 
-  if(choice > 5){
+  if(quit())
+    return 0;
+
+  else if(choice > 5){
     bool runagain = false;
     do{
       cout << "Pick an item onscreen." << endl;
       cin >> choice;
+
       if(choice > 5)
         runagain = true;
+
+      else if(quit()) // if cin sees a char, set choice to 0
+        return 0;
+
       else // if passes everything, just return choice
         runagain = false;
-      while(cin.fail()){ // if cin sees a char, set choice to 0
-        cout << "test" << endl;
-        cin.clear();
-        cin.ignore();
-        cin.ignore();
-        cin.ignore();
-
-        runagain = false;
-        choice = 0;
-      }
 
     } while(runagain);
-    //choice = 0;
   }
-
   return choice;
 }
 
@@ -122,9 +118,35 @@ void Canvas::showInventory(){
   }
 }
 
+
 void Canvas::stats(){
-  cout << "\n Balance: $" << FormatWithCommas(Player::getBalance()) << endl;
-  cout << " Items:   [" << Player::getInventory().size() << " / 6]" << endl;
+
+  for(int i = 0; i < 19; i++){
+    cout << " . ";
+  }
+  cout << "\n";
+  stringstream balanceString;
+  stringstream itemsString;
+  // if(Player::numDigits() % 2 == 0 || Player::getBalance() == 0)
+  //   balanceString << "Balance: $" << FormatWithCommas(Player::getBalance()) << " ";
+  // else
+  balanceString << "Balance: $" << FormatWithCommas(Player::getBalance());
+
+  itemsString << " Items: [" << Player::getInventory().size() << " / 6]";
+
+  cout << Menu::centered(balanceString.str(), 35);
+
+
+
+
+  cout << Menu::centered("Press 'h'", 17) << "\n";
+  cout << Menu::centered(itemsString.str(), 35);
+  cout << Menu::centered("  to go home.", 17) << "\n";
+
+  for(int i = 0; i < 19; i++){
+    cout << " ' ";
+  }
+  cout << "\n";
 }
 
 string Canvas::FormatWithCommas(unsigned long long val){
@@ -151,6 +173,18 @@ bool Canvas::lost(){
     lost = true;
   return lost;
 }
+
+bool Canvas::quit(){
+  bool quit = false;
+  if(cin.fail()){
+    cout << "quit: test" << endl;
+    cin.clear();
+    quit = true;
+  }
+  return quit;
+}
+
+
 
 Canvas::Canvas(){}
 Canvas::~Canvas(){}

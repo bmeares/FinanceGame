@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 //#include "../objects/Player.h"
 //#include "../auction.h"
 // #include "../sell.h"
@@ -11,6 +12,7 @@
 #include <locale>
 #include <iomanip>
 #include <vector>
+
 
 using namespace std;
 
@@ -28,6 +30,10 @@ class Canvas{
     static string FormatWithCommas(unsigned long long);
     static unsigned long long randomLL(unsigned long long, unsigned long long);
     static bool lost();
+    static bool quit();
+    static void lostMessage();
+    // static int x();
+    // static int y();
 
     Canvas();
     ~Canvas();

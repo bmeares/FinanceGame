@@ -3,35 +3,37 @@
 using namespace std;
 
 unsigned long long Invest::amount = 0;
-double Invest::rate = 0.00005;
+double Invest::rate = 0.001;
 double Invest::effect = 0.0;
 
 void Invest::invest(){
   Canvas::clearScreen();
   Canvas::stats();
   cout << "\n   INVEST:\n\n";
-  cout << "   Rate: 0.005% per $\n" << endl;
+  cout << "   Rate: 0.1% per $\n" << endl;
 
   if(Player::hasInventory()){
 
-    cout << "Enter how much money you want to invest: ";
-    cout << "$";
+    cout << "Enter how much money you want to invest."
+    << "\n(Note: You cannot invest more than an item is worth)" << endl;
+    cout << "  $";
     cin >> amount;
-
-    if(amount > 0 && amount <= Player::getBalance()){
-      apply();
-      Player::subtractBalance(amount);
+    if(!Canvas::quit()){
+      if(amount > 0 && amount <= Player::getBalance()){
+        apply();
+        Player::subtractBalance(amount);
+      }
+      else{
+        cout << "\n   You can't spend money you don't have.\n\n" << endl;
+        cout << "   Press any key to return." << endl;
+        cin.ignore();
+      }
     }
     else{
-      cout << "\n   You can't spend money you don't have." << endl;
+      cout << "\n   You need an inventory to invest.\n\n" << endl;
       cout << "   Press any key to return." << endl;
       cin.ignore();
     }
-  }
-  else{
-    cout << "   You need an inventory to invest.\n\n" << endl;
-    cout << "   Press any key to return." << endl;
-    cin.ignore();
   }
 }
 
@@ -44,13 +46,29 @@ void Invest::apply(){
 
   int choice = Canvas::inventoryChoice();
 
-  effect = (amount) * rate;
-  int val = Player::getInventory().at(choice - 1).getValue();
+  if(choice != 0){
+    unsigned long long val = Player::getInventory().at(choice - 1).getValue();
+    if(amount > val){
+      cout << "\n   Cannot invest more than the item is worth.\n\n" << endl;
+      cout << "   Press any key to return." << endl;
+      cin.ignore();
+      Player::addBalance(amount);
+    }
+    // Check if good does not have an improvement already
+    else if (!Good::hasImprovement(choice - 1)){
+      effect = (amount) * rate;
 
-  val = (val * effect) + val;
+      val = (val * effect) + val;
 
-  Player::getInventory().at(choice - 1).setValue(val);
+      Player::getInventory().at(choice - 1).setValue(val);
+    }
+    else{ //if good has improvement
+      cout << "\nCannot invest in an item that has already been improved." << endl;
+      cout << "Press any key to return." << endl;
+      cin.ignore();
+    }
 
+  }
 //  Player::getInventory().at(choice - 1).getValue() *= effect;
   // Player::getInventory().at(choice - 1).improve(srv.getEffect());
 

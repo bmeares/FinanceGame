@@ -13,12 +13,6 @@ void Sell::sell(){
     cout << "   Choose an item from below to sell, or press n to return.\n"
     << endl;
 
-    // Canvas::showInventory();
-    // int choice = 0;
-    // cout << "  Choice: ";
-    // cin >> choice;
-    // cout << "\n";
-
     int choice = Canvas::inventoryChoice();
 
     if(choice != 0)

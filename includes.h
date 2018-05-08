@@ -1,6 +1,7 @@
 #ifndef INCLDUES_H
 #define INCLUDES_H 1
 
+//#include <ncurses.h>
 #include <iostream>
 #include <string>
 #include <unistd.h>

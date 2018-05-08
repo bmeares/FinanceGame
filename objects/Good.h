@@ -32,6 +32,8 @@ class Good{
     void setService(Service srv){service = srv;}
     Service& getService(){return service;}
 
+    static bool hasImprovement(int);
+
     Good();
     Good(int, string);
     ~Good();
