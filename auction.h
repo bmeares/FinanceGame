@@ -22,7 +22,7 @@ class Auction{
     static void auction();
     static void printOptions();
     static string itemName(int seed);
-    static unsigned long long roundPrice();
+    static uint64_t roundPrice();
   };
 
 #endif

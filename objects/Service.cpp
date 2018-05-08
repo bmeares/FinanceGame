@@ -19,9 +19,11 @@ void Service::buy(){
 
 std::ostream& operator << (ostream& out, const Service& service) {
  return out << "   Service:" << setw(15) << service.name << "\n"
-            << "   Cost:" << setw(16) << "$" << service.cost << "\n"
+            << "   Cost:" << setw(16) << "$"
+            << Canvas::FormatWithCommas(service.cost) << "\n"
             << "   Improvement:" << setw(10) << setprecision(2)
-            << Canvas::FormatWithCommas((service.effect * 100) - 100) << "%" << endl;
+            << Canvas::FormatWithCommas((service.effect * 100) - 100)
+            << "%" << endl;
 }
 
 Service& Service::operator = (const Service& rhs){

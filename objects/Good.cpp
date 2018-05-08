@@ -4,8 +4,8 @@
 
 void Good::buy(){
 
-  cout << "Would you like to buy " << name << " for $" << value <<
-  "? (Y/N) ";
+  cout << "Would you like to buy " << name << " for $"
+   << Canvas::FormatWithCommas(value) << "? (Y/N) ";
 
   Player::setChoice();
 

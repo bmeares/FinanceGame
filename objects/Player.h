@@ -12,23 +12,23 @@ using namespace std;
 
 class Player{
   private:
-    static unsigned long long balance;
+    static uint64_t balance;
     static string choice;
     static vector<Good> inventory;
     static vector<Service> services;
 
   public:
 
-    static unsigned long long getBalance(){return balance;}
-    static void setBalance(unsigned long long num){balance = num;}
+    static uint64_t getBalance(){return balance;}
+    static void setBalance(uint64_t num){balance = num;}
     static string getChoice();
     static void setChoice();
     static vector<Good>& getInventory();
 
     static bool yesOrNo();
     static bool hasInventory();
-    static void addBalance(unsigned long long bal){balance += bal;}
-    static void subtractBalance(unsigned long long bal){balance -= bal;}
+    static void addBalance(uint64_t bal){balance += bal;}
+    static void subtractBalance(uint64_t bal){balance -= bal;}
     static int numDigits();
     static int firstThreeBalance();
 

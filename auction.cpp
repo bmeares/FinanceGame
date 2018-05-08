@@ -10,12 +10,25 @@ void Auction::auction(){
   bool runagain = true;
   int choice = -1;
 
+  Canvas::clearScreen();
+  Canvas::stats();
+  cout << "\n   AUCTION:\n\n";
+
+  if(Player::getBalance() > 0)
+    runagain = true;
+  else{
+    cout << "You need money to buy something." << endl;
+    cout << "Press any key to return." << endl;
+    cin.clear();
+    cin.ignore();
+    cin.ignore();
+    runagain = false;
+  }
+
   while(runagain){
 
     runagain = false;
-    Canvas::clearScreen();
-    Canvas::stats();
-    cout << "\n   AUCTION:\n\n";
+
 
     if(Player::getInventory().size() < 6){
       printOptions();
@@ -53,7 +66,7 @@ void Auction::printOptions(){
   int randMax = 6;
   int seed;
 
-  //unsigned long long maxPrice = Player::getBalance();
+  //uint64_t maxPrice = Player::getBalance();
 
   cout << "   Choose an item from below to purchase, or press n to return\n"
     << endl;
@@ -67,11 +80,11 @@ void Auction::printOptions(){
   }
 }
 
-unsigned long long Auction::roundPrice(){
+uint64_t Auction::roundPrice(){
   int numDigits = Player::numDigits();
 
-  unsigned long long balance = Player::getBalance();
-  unsigned long long randPrice = Canvas::randomLL(0, balance);
+  uint64_t balance = Player::getBalance();
+  uint64_t randPrice = Canvas::randomLL(1, balance);
   //int firstThreeBalance = Canvas::randomLL(1, 9);
 
   if(numDigits > 3){
@@ -80,6 +93,11 @@ unsigned long long Auction::roundPrice(){
       randPrice *= 10;
     }
   }
+
+  // cap randPrice to maxVal
+  uint64_t maxVal = 1000000000000000;
+  if(randPrice > maxVal)
+    randPrice = maxVal;
 
   return randPrice;
 }

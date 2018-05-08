@@ -27,11 +27,13 @@ class Canvas{
     static int inventoryChoice();
     static int serviceChoice();
     static void stats();
-    static string FormatWithCommas(unsigned long long);
-    static unsigned long long randomLL(unsigned long long, unsigned long long);
+    static string FormatWithCommas(uint64_t);
+    static uint64_t randomLL(uint64_t, uint64_t);
     static bool lost();
     static bool quit();
+    static bool won();
     static void lostMessage();
+    static void wonMessage();
     // static int x();
     // static int y();
 

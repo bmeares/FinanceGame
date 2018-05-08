@@ -13,9 +13,10 @@ using namespace std;
 
 class Good{
   protected:
-    unsigned long long value;
+    uint64_t value;
     string name;
     Service service;
+    //bool invested;
 
   public:
 
@@ -25,8 +26,8 @@ class Good{
 
     friend ostream& operator<<(ostream&, Good&);
 
-    void setValue(unsigned long long val){value = val;}
-    unsigned long long getValue(){return value;}
+    void setValue(uint64_t val){value = val;}
+    uint64_t getValue(){return value;}
     void setName(string name){this->name = name;}
     string getName(){return name;}
     void setService(Service srv){service = srv;}

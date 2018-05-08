@@ -39,11 +39,22 @@ bool Canvas::info(){
     lostMessage();
     running = false;
   }
+  if(won()){
+    wonMessage();
+    running = false;
+  }
   return running;
 }
 void Canvas::lostMessage(){
   clearScreen();
   cout << "\n You're out of money and have no assets!\n\n";
+  cout << " Thanks for playing! Press any key to quit." << endl;
+  //cin.ignore();
+}
+
+void Canvas::wonMessage(){
+  clearScreen();
+  cout << "\n Congrats! You own all of the wealth on Earth!\n\n";
   cout << " Thanks for playing! Press any key to quit." << endl;
   cin.ignore();
 }
@@ -149,14 +160,14 @@ void Canvas::stats(){
   cout << "\n";
 }
 
-string Canvas::FormatWithCommas(unsigned long long val){
+string Canvas::FormatWithCommas(uint64_t val){
     stringstream ss;
     ss.imbue(std::locale(""));
     ss << fixed << val;
     return ss.str();
 }
 
-unsigned long long Canvas::randomLL(unsigned long long min, unsigned long long max) //range : [min, max)
+uint64_t Canvas::randomLL(uint64_t min, uint64_t max) //range : [min, max)
 {
    static bool first = true;
    if (first)
@@ -168,7 +179,7 @@ unsigned long long Canvas::randomLL(unsigned long long min, unsigned long long m
 }
 
 bool Canvas::lost(){
-  bool lost;
+  bool lost = false;
   if(Player::getBalance() == 0 && Player::getInventory().size() == 0)
     lost = true;
   return lost;
@@ -184,7 +195,12 @@ bool Canvas::quit(){
   return quit;
 }
 
-
+bool Canvas::won(){
+  bool won = false;
+  if(Player::getBalance() > 10000000000000000) //
+    won = true;
+  return won;
+}
 
 Canvas::Canvas(){}
 Canvas::~Canvas(){}

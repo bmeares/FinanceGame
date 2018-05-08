@@ -1,8 +1,11 @@
 #include "Menu.h"
 
 bool Menu::startGame(){
+  double version = 1.0;
   Canvas::clearScreen();
-  cout << "Welcome to Money Game. Press any key to begin" << endl;
+  cout << "\n Welcome to Finance Game! You're playing version "
+    << fixed << setprecision(1) << version << ".";
+  cout << "\n\n Enter any key to begin." << endl;
   cin.ignore();
   return true;
 }

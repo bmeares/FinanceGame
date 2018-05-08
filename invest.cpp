@@ -2,7 +2,7 @@
 
 using namespace std;
 
-unsigned long long Invest::amount = 0;
+uint64_t Invest::amount = 0;
 double Invest::rate = 0.001;
 double Invest::effect = 0.0;
 
@@ -47,7 +47,7 @@ void Invest::apply(){
   int choice = Canvas::inventoryChoice();
 
   if(choice != 0){
-    unsigned long long val = Player::getInventory().at(choice - 1).getValue();
+    uint64_t val = Player::getInventory().at(choice - 1).getValue();
     if(amount > val){
       cout << "\n   Cannot invest more than the item is worth.\n\n" << endl;
       cout << "   Press any key to return." << endl;
@@ -57,10 +57,20 @@ void Invest::apply(){
     // Check if good does not have an improvement already
     else if (!Good::hasImprovement(choice - 1)){
       effect = (amount) * rate;
-
       val = (val * effect) + val;
+      uint64_t maxVal = 1000000000000000;
+      if(val > maxVal || val == 0){
+        cout << "\n An item's value cannot exceed $"
+        << Canvas::FormatWithCommas(maxVal) << ".\n"
+        << "\n The value has been capped at $"
+        << Canvas::FormatWithCommas(maxVal) << ".\n";
+        cout << " Press any key to return." << endl;
+        cin.ignore();
+        val = maxVal;
+      }
 
-      Player::getInventory().at(choice - 1).setValue(val);
+      //else
+        Player::getInventory().at(choice - 1).setValue(val);
     }
     else{ //if good has improvement
       cout << "\nCannot invest in an item that has already been improved." << endl;

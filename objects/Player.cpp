@@ -1,6 +1,6 @@
 #include "Player.h"
 
-unsigned long long Player::balance = 100;
+uint64_t Player::balance = 100;
 string Player::choice = "";
 vector<Good> Player::inventory = {};
 vector<Service> Player::services = {};
@@ -30,7 +30,7 @@ bool Player::hasInventory(){
 
 int Player::numDigits(){
   int numDigits = 0;
-  unsigned long long tempBalance = balance;
+  uint64_t tempBalance = balance;
   while(tempBalance > 0){
     tempBalance /= 10;
     numDigits++;
@@ -40,7 +40,7 @@ int Player::numDigits(){
 
 int Player::firstThreeBalance(){
   int num = numDigits();
-  unsigned long long tempBalance = balance;
+  uint64_t tempBalance = balance;
   for (int i = 0; i < num - 3; i++){
     tempBalance /= 10;
   }

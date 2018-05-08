@@ -14,7 +14,7 @@ using namespace std;
 
 class Service{
   private:
-    unsigned long long cost;
+    uint64_t cost;
     string name;
     double effect;
 
@@ -23,7 +23,7 @@ class Service{
     void buy();
 
     void setName(string name){this->name = name;}
-    void setCost(unsigned long long cost){this->cost = cost;}
+    void setCost(uint64_t cost){this->cost = cost;}
     string getName(){return name;}
     void setEffect(double e){this->effect = e;}
     double getEffect(){return effect;}
