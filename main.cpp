@@ -6,6 +6,9 @@ int main() {
 
   Menu menu;
   Canvas canvas;
+  ofstream saveFile;
+
+  saveFile.open("inventory.save");
 
   bool running = menu.startGame();
   do{
@@ -17,6 +20,8 @@ int main() {
 
 
   } while (running);
+
+  saveFile.close();
 
   return 0;
 }
