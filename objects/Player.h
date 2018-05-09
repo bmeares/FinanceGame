@@ -31,7 +31,8 @@ class Player{
     static void subtractBalance(uint64_t bal){balance -= bal;}
     static int numDigits();
     static int firstThreeBalance();
-
+    static void readSave(ifstream);
+    static void writeSave();
 
     static void addGood(Good&);
     static void removeGood(int);

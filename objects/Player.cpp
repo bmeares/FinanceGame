@@ -59,6 +59,11 @@ void Player::addService(Service& service){
   services.push_back(service);
 }
 
+void Player::readSave(ifstream read){
+  
+}
+
+
 vector<Good>& Player::getInventory(){return inventory;}
 
 
