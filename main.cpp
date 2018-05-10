@@ -30,10 +30,16 @@ int main() {
 
   Player::clearSave();
 
-  saveFile.open("inventory.save", fstream::in | fstream::out | std::ios_base::app);
-  Player::writeSave(saveFile);
+  Canvas::clearScreen();
+  cout << "\n Would you like to save your game? (Y/N) ";
+  Player::setChoice();
+  if(Player::yesOrNo()){
+    saveFile.open("inventory.save", fstream::in | fstream::out | std::ios_base::app);
+    Player::writeSave(saveFile);
+    saveFile.close();
+  }
 
-  saveFile.close();
+  Canvas::clearScreen();
 
   return 0;
 }

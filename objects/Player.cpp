@@ -13,14 +13,12 @@ Player::~Player(){}
 bool Player::yesOrNo(){
   if(choice == "y" || choice == "Yes" || choice == "yes" || choice == "Y"
   || choice == "YES" || choice == "1" || choice == "YASS"){
-//    cout << "TEMP true yes" << endl;
-//    cin.ignore();
+
     return true;
   }
   else{
     choice = "";
-//    cout << "TEMP false yes" << endl;
-    cin.ignore();
+
     return false;
   }
 }
@@ -69,32 +67,29 @@ void Player::readSave(fstream& saveFile){
 
   string name;
   string buffer;
+  int intbuff;
   uint64_t value;
   int runint = 1;
   vector<Good> inventory;
   bool load = false;
-  //string choice;
 
   getline(saveFile, name);
+  saveFile >> intbuff;
 
-//  cout << "TEMP: name" << name << endl;
-//   cin.ignore();
-  //cout << "TEMP name = " << name << endl;
-  //cin.ignore();
-//  cout << "TEMP name = " << name << endl;
-  if(name != "" || name == "0"){
+  if(name == "0" && intbuff == 100){
+    load = false;
+  }
+
+  else if(name != ""){
     Canvas::clearScreen();
-    cout << "Save detected. Load save? (Y/N) ";
-    cin.clear();
-//    cin.ignore();
+    cout << "\n Save detected. Load previous game? (Y/N) ";
     cin >> choice;
-//    cout << "TEMP: choice: " << choice << endl;
     load = yesOrNo();
   }
 
   if(load){
 
-    if(name != "" || name == "0"){
+    if(name != "" && name != "0"){
       saveFile.clear();
       saveFile.seekg(0, ios::beg);
       do {
@@ -123,9 +118,9 @@ void Player::readSave(fstream& saveFile){
 void Player::writeSave(fstream& saveFile){
 
   for(uint i = 1; i < inventory.size(); i++){
-    saveFile << inventory.at(i).getName();
+    saveFile << inventory.at(i - 1).getName();
     saveFile << "\n";
-    saveFile << inventory.at(i).getValue();
+    saveFile << inventory.at(i - 1).getValue();
     saveFile << "\n";
     saveFile << 1;
     saveFile << "\n";
@@ -135,11 +130,6 @@ void Player::writeSave(fstream& saveFile){
     saveFile << "\n";
     saveFile << inventory.back().getValue();
     saveFile << "\n";
-    //saveFile << 0;
-    //saveFile << "\n";
-    // cout << "TEMP INSIDE WRITE" << endl;
-    // cout << "TEMP "
-    // cin.ignore();
   }
 
   saveFile << 0;

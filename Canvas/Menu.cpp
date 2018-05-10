@@ -1,9 +1,9 @@
 #include "Menu.h"
 
 bool Menu::startGame(){
-  double version = 1.2;
+  double version = 1.4;
   Canvas::clearScreen();
-  cout << "\n Welcome to Finance Game! You're playing version "
+  cout << "\n Welcome to Accountant Simulator! You're playing version "
     << fixed << setprecision(1) << version << ".";
   cout << "\n\n Enter any key to begin." << endl;
   cin.ignore();
@@ -15,7 +15,7 @@ void Menu::printTable(){
   cout << "\n Choose what you'd like to do from the options below.\n\n ";
 
   for(int i = 0; i < 55; i++){
-    cout << "_";
+    cout << "\u2014";
   }
   cout << "\n |" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
   cout << " |" << centered("Inventory (i)", 17) << "|";
@@ -36,7 +36,7 @@ void Menu::printTable(){
 
   cout << " ";
   for(int i = 0; i < 55; i++){
-    cout << "\u0305";
+    cout << "\u2014";
   }
   cout << "\n Choice: ";
 }
