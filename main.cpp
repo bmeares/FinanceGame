@@ -6,14 +6,19 @@ int main() {
 
   Menu menu;
   Canvas canvas;
-  ofstream write;
-  ifstream read;
+  fstream saveFile;
 
-//  saveFile.open("inventory.save");
+  saveFile.open("inventory.save", fstream::in | fstream::out | std::ios_base::app);
+
+//  Player::writeSave(saveFile);
+  Player::readSave(saveFile);
+  saveFile.close();
+
+
 
   bool running = menu.startGame();
   do{
-    Player::readSave(read);
+
     running = canvas.info();
     cin.ignore();
 
@@ -22,6 +27,11 @@ int main() {
 
 
   } while (running);
+
+  Player::clearSave();
+
+  saveFile.open("inventory.save", fstream::in | fstream::out | std::ios_base::app);
+  Player::writeSave(saveFile);
 
   saveFile.close();
 
