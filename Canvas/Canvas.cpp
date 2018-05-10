@@ -52,7 +52,7 @@ void Canvas::lostMessage(){
   clearScreen();
   cout << "\n You're out of money and have no assets!\n\n";
   cout << " Thanks for playing! Press any key to quit." << endl;
-  //cin.ignore();
+  cin.ignore();
 }
 
 void Canvas::wonMessage(){
@@ -183,7 +183,7 @@ uint64_t Canvas::randomLL(uint64_t min, uint64_t max) //range : [min, max)
 
 bool Canvas::lost(){
   bool lost = false;
-  if(Player::getBalance() == 0 && Player::getInventory().size() == 0)
+  if(Player::getBalance() == 1 && Player::getInventory().size() == 0)
     lost = true;
   return lost;
 }
