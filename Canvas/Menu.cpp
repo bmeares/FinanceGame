@@ -1,7 +1,7 @@
 #include "Menu.h"
 
 bool Menu::startGame(){
-  double version = 1.1;
+  double version = 1.2;
   Canvas::clearScreen();
   cout << "\n Welcome to Finance Game! You're playing version "
     << fixed << setprecision(1) << version << ".";
