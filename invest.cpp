@@ -24,17 +24,17 @@ void Invest::invest(){
         Player::subtractBalance(amount);
       }
       else{
-        cout << "\n   You can't spend money you don't have.\n\n" << endl;
+        cout << "\n   You can't spend money you don't have.\n" << endl;
         cout << "   Press any key to return." << endl;
         cin.ignore();
       }
     }
+  }
     else{
-      cout << "\n   You need an inventory to invest.\n\n" << endl;
+      cout << "\n   You need an inventory to invest.\n" << endl;
       cout << "   Press any key to return." << endl;
       cin.ignore();
     }
-  }
 }
 
 void Invest::apply(){

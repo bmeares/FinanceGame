@@ -191,7 +191,6 @@ bool Canvas::lost(){
 bool Canvas::quit(){
   bool quit = false;
   if(cin.fail()){
-    cout << "quit: test" << endl;
     cin.clear();
     quit = true;
   }
