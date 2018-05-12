@@ -68,13 +68,13 @@ int Canvas::inventoryChoice(){
   if(quit())
     return 0;
 
-  else if(static_cast<uint>(choice) > Player::getInventory().size()){
+  else if(static_cast<unsigned int>(choice) > Player::getInventory().size()){
     bool runagain = false;
     do{
       cout << "Pick an item onscreen." << endl;
       cin >> choice;
 
-      if(static_cast<uint>(choice) > Player::getInventory().size())
+      if(static_cast<unsigned int>(choice) > Player::getInventory().size())
         runagain = true;
 
       else if(quit())
@@ -120,7 +120,7 @@ int Canvas::serviceChoice(){
 void Canvas::showInventory(){
   cout << "\n INVENTORY: \n" << endl;
   if(Player::hasInventory()){
-    for(uint i = 0; i < Player::getInventory().size(); i++){
+    for(unsigned int i = 0; i < Player::getInventory().size(); i++){
       cout << i + 1 << ".\n" << Player::getInventory().at(i) << endl;
     }
   }

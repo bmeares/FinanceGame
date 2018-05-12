@@ -3,11 +3,11 @@
 # ******************************************************** #
 
 # Output Config
-TARGET :=financeGame
+TARGET :=AccountantSimulator
 OBJDIR :=bin/
 
 # Compiler bin
-CC 		 :=g++
+CC 		 :=x86_64-w64-mingw32-g++
 CFLAGS :=-Wall -std=c++11 -g
 LFLAGS :=-lm
 

@@ -89,7 +89,7 @@ uint64_t Auction::roundPrice(){
 
   if(numDigits > 3){
     randPrice = Canvas::randomLL(1, Player::firstThreeBalance());
-    for(uint i = 0; i < Canvas::randomLL(1, numDigits - 3); i++){
+    for(unsigned int i = 0; i < Canvas::randomLL(1, numDigits - 3); i++){
       randPrice *= 10;
     }
   }
