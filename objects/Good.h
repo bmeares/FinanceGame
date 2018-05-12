@@ -36,7 +36,7 @@ class Good{
     static bool hasImprovement(int);
 
     Good();
-    Good(int, string);
+    Good(uint64_t, string);
     ~Good();
 };
 #endif

@@ -17,10 +17,10 @@ void Auction::auction(){
   if(Player::getBalance() > 0)
     runagain = true;
   else{
-    cout << "You need money to buy something." << endl;
+    cout << "You need money to buy something.\n" << endl;
     cout << "Press any key to return." << endl;
     cin.clear();
-    cin.ignore();
+  //  cin.ignore();
     cin.ignore();
     runagain = false;
   }
@@ -42,9 +42,15 @@ void Auction::auction(){
           cout << "Error: please choose a valid item." << endl;
           cout << "Press any key to run again." << endl;
           runagain = true;
+          cin.ignore();
+          cin.ignore();
+
+          Canvas::clearScreen();
+          Canvas::stats();
+          cout << "\n   AUCTION:\n\n";
           // Not sure why, but I need two ignores for this to work
-          cin.ignore();
-          cin.ignore();
+//          cin.ignore();
+//          cin.ignore();
         }
         else{
           GOODS.at(choice - 1).buy();

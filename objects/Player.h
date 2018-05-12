@@ -6,6 +6,7 @@
 #include "Good.h"
 #include <vector>
 #include "Service.h"
+#include <fstream>
 // #include "../includes.h"
 
 using namespace std;
@@ -31,7 +32,9 @@ class Player{
     static void subtractBalance(uint64_t bal){balance -= bal;}
     static int numDigits();
     static int firstThreeBalance();
-
+    static void readSave(fstream&);
+    static void writeSave(fstream&);
+    static void clearSave();
 
     static void addGood(Good&);
     static void removeGood(int);

@@ -49,7 +49,7 @@ ostream& operator << (ostream& out, Good& good) {
 }
 
 Good::Good(){}
-Good::Good(int val, string name){
+Good::Good(uint64_t val, string name){
   this->value = val;
   this->name = name;
 }
