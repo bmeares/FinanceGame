@@ -1,9 +1,16 @@
 #include "Canvas.h"
+#include <process.h>
+//#include "../conio.h"
 
 using namespace std;
 
 void Canvas::clearScreen(){
-  cout << "\033c";
+  //cout << "\033c";
+  system("cls");
+  //cout << "\x1B[2J\x1B[H";
+  //cout << string( 100, '\n' );
+//  cout << "\x1b[2J\x1b[1;1H" << std::flush;
+//clrscr();
 }
 
 bool Canvas::info(){
@@ -32,9 +39,6 @@ bool Canvas::info(){
   if(Player::getChoice() == "n" || Player::getChoice() == "N"){
     Invest::invest();
   }
-  if(Player::getChoice() == "d" || Player::getChoice() == "D"){
-    Player::clearSave();
-  }
   if(Player::getChoice() == "q" || Player::getChoice() == "Q"){
     running = false;
   }
@@ -52,7 +56,7 @@ void Canvas::lostMessage(){
   clearScreen();
   cout << "\n You're out of money and have no assets!\n\n";
   cout << " Thanks for playing! Press any key to quit." << endl;
-  cin.ignore();
+  //cin.ignore();
 }
 
 void Canvas::wonMessage(){
@@ -183,7 +187,7 @@ uint64_t Canvas::randomLL(uint64_t min, uint64_t max) //range : [min, max)
 
 bool Canvas::lost(){
   bool lost = false;
-  if(Player::getBalance() == 1 && Player::getInventory().size() == 0)
+  if(Player::getBalance() == 0 && Player::getInventory().size() == 0)
     lost = true;
   return lost;
 }
@@ -191,6 +195,7 @@ bool Canvas::lost(){
 bool Canvas::quit(){
   bool quit = false;
   if(cin.fail()){
+    cout << "quit: test" << endl;
     cin.clear();
     quit = true;
   }

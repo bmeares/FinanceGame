@@ -117,7 +117,7 @@ void Player::readSave(fstream& saveFile){
 
 void Player::writeSave(fstream& saveFile){
 
-  for(uint i = 1; i < inventory.size(); i++){
+  for(unsigned int i = 1; i < inventory.size(); i++){
     saveFile << inventory.at(i - 1).getName();
     saveFile << "\n";
     saveFile << inventory.at(i - 1).getValue();

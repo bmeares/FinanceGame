@@ -3,12 +3,12 @@
 # ******************************************************** #
 
 # Output Config
-TARGET :=AccountantSimulator
+TARGET :=AccountantSimulator.exe
 OBJDIR :=bin/
 
 # Compiler bin
 CC 		 :=x86_64-w64-mingw32-g++
-CFLAGS :=-Wall -std=c++11 -g
+CFLAGS :=-Wall -std=c++11 -g -static-libstdc++ -static-libgcc
 LFLAGS :=-lm
 
 # Find all possible source files

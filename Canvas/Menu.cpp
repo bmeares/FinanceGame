@@ -3,8 +3,9 @@
 bool Menu::startGame(){
   double version = 1.4;
   Canvas::clearScreen();
-  cout << "\n Welcome to Accountant Simulator! You're playing version "
-    << fixed << setprecision(1) << version << ".";
+  cout << "\n Welcome to Accountant Simulator!" << endl;
+  cout << " You're playing version "
+    << fixed << setprecision(1) << version << ": Windows Edition!";
   cout << "\n\n Enter any key to begin." << endl;
   cin.ignore();
   return true;
@@ -15,7 +16,7 @@ void Menu::printTable(){
   cout << "\n Choose what you'd like to do from the options below.\n\n ";
 
   for(int i = 0; i < 55; i++){
-    cout << "\u2014";
+    cout << "-";
   }
   cout << "\n |" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
   cout << " |" << centered("Inventory (i)", 17) << "|";
@@ -25,7 +26,7 @@ void Menu::printTable(){
 
   cout << " ";
   for(int i = 0; i < 55; i++){
-    cout << "\u2014";
+    cout << "-";
   }
 
   cout << "\n |" << setw(18) << "|" << setw(18) << "|" << setw(18) << "|" << endl;
@@ -36,7 +37,7 @@ void Menu::printTable(){
 
   cout << " ";
   for(int i = 0; i < 55; i++){
-    cout << "\u2014";
+    cout << "-";
   }
   cout << "\n Choice: ";
 }
